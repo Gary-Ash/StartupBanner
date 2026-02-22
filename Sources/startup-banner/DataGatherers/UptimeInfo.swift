@@ -1,11 +1,11 @@
 /*****************************************************************************************
  * UptimeInfo.swift
  *
- * Gather system uptime and format as days, hours:minutes
+ * Gather system uptime and format as days, hours, minutes
  *
  * Author   :  Gary Ash <gary.ash@icloud.com>
  * Created  :  10-Feb-2026  3:00pm
- * Modified :
+ * Modified :  22-Feb-2026
  *
  * Copyright © 2026 By Gary Ash All rights reserved.
  ****************************************************************************************/
@@ -20,6 +20,9 @@ public enum UptimeInfo {
         let hours = (totalMinutes % (60 * 24)) / 60
         let minutes = totalMinutes % 60
 
-        return .uptime("\(days) days, \(hours):\(String(format: "%02d", minutes))")
+        let dayLabel = days == 1 ? "day" : "days"
+        let hourLabel = hours == 1 ? "hour" : "hours"
+        let minuteLabel = minutes == 1 ? "minute" : "minutes"
+        return .uptime("\(days) \(dayLabel), \(hours) \(hourLabel) \(minutes) \(minuteLabel)")
     }
 }
