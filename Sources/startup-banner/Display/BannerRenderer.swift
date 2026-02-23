@@ -5,7 +5,7 @@
  *
  * Author   :  Gary Ash <gary.ash@icloud.com>
  * Created  :  10-Feb-2026  3:00pm
- * Modified :
+ * Modified :  24-Feb-2026 10:09pm
  *
  * Copyright © 2026 By Gary Ash All rights reserved.
  ****************************************************************************************/
@@ -75,7 +75,7 @@ public struct BannerRenderer {
             }
         }
 
-        print("\n\n\n")
+        print("\n\n")
     }
 
     private func stripANSI(_ text: String) -> String {
