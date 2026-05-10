@@ -5,7 +5,7 @@
  *
  * Author   :  Gary Ash <gary.ash@icloud.com>
  * Created  :  10-Feb-2026  3:00pm
- * Modified :  24-Feb-2026 10:09pm
+ * Modified :   9-May-2026 10:55pm
  *
  * Copyright © 2026 By Gary Ash All rights reserved.
  ****************************************************************************************/
@@ -13,8 +13,13 @@
 import Foundation
 
 public struct BannerRenderer {
-    public init(theme: ANSITheme) { self.theme = theme }
+    public init(theme: ANSITheme, imagePath: String? = nil) {
+        self.theme = theme
+        self.imagePath = imagePath
+    }
+
     public let theme: ANSITheme
+    public let imagePath: String?
 
     public func render(_ info: SystemInfo) {
         var specs: [String] = []
@@ -58,7 +63,7 @@ public struct BannerRenderer {
         let specsColumn = max(1, (info.terminalColumns - longest) / 2 + 10)
 
         print("\u{1B}[2J\u{1B}[H", terminator: "")
-        AppleLogo.display(supportsKitty: info.supportsKitty)
+        let logoRows = AppleLogo.display(supportsKitty: info.supportsKitty, imagePath: imagePath)
 
         for (index, text) in specs.enumerated() {
             let row = index + 1
@@ -75,7 +80,8 @@ public struct BannerRenderer {
             }
         }
 
-        print("\n\n")
+        let bannerRows = max(logoRows, specs.count)
+        print("\u{1B}[\(bannerRows);1H", terminator: "")
     }
 
     private func stripANSI(_ text: String) -> String {

@@ -17,7 +17,7 @@ A fast, native macOS terminal startup banner that displays system information al
 ## Requirements
 
 - macOS 14.0 (Sonoma) or later
-- Swift 6.0+
+- Swift 6.2+ (Xcode 26 or later)
 - Kitty-compatible terminal for PNG logo display (optional, ASCII fallback provided)
 
 ## Installation
@@ -29,6 +29,14 @@ cd StartupBanner
 swift build -c release
 cp .build/release/startup-banner /usr/local/bin/
 ```
+
+To run the test suite:
+
+```bash
+swift test
+```
+
+Optionally, place an Apple logo PNG at `/opt/geedbla/pictures/apple-logo.png` for Kitty-protocol image display; otherwise the colorful ASCII fallback is used.
 
 ### Shell Integration
 
@@ -44,21 +52,27 @@ startup-banner --dark
 startup-banner [OPTIONS]
 
 Options:
-  -l, --light    Light terminal background theme (default)
-  -d, --dark     Dark terminal background theme
+  -l, --light          Light terminal background theme (default)
+  -d, --dark           Dark terminal background theme
+  -i, --image PATH     Path to a PNG logo for Kitty-protocol display
+                       (default: /opt/geedbla/pictures/apple-logo.png)
 ```
 
 ## Project Structure
 
 ```
 Sources/
-├── startup-banner/              Library
+├── startup-banner/              StartupBannerLib library target
 │   ├── SystemInfo.swift         Data model
-│   ├── DataGatherers/           System info collectors
-│   ├── Display/                 ANSI themes, logo, renderer
-│   └── Utilities/               Sysctl helpers, subprocess runner
-└── startup-banner-cli/          Executable entry point
-    └── main.swift
+│   ├── DataGatherers/           System info collectors (Battery, Disk, GPU,
+│   │                            Hardware, Homebrew, Network, OS, Shell,
+│   │                            Terminal, Uptime, User)
+│   ├── Display/                 ANSITheme, AppleLogo, BannerRenderer
+│   └── Utilities/               SysctlHelpers, SubprocessRunner
+├── startup-banner-cli/          startup-banner executable target
+│   └── main.swift               Entry point
+└── ../Tests/startup-bannerTests/
+    └── StartupBannerTests.swift
 ```
 
 ## License

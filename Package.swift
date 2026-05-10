@@ -22,7 +22,6 @@ let package = Package(
         .target(
             name: "StartupBannerLib",
             path: "Sources/startup-banner",
-            exclude: ["main.swift"],
             linkerSettings: [
                 .linkedFramework("IOKit"),
             ]
