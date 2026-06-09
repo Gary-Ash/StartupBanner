@@ -5,7 +5,7 @@
  *
  * Author   :  Gary Ash <gary.ash@icloud.com>
  * Created  :  10-Feb-2026  3:00pm
- * Modified :
+ * Modified :  9-Jun-2026  3:52pm
  *
  * Copyright © 2026 By Gary Ash All rights reserved.
  ****************************************************************************************/
@@ -20,6 +20,7 @@ public enum OSInfo {
         14: "macOS Sonoma",
         15: "macOS Sequoia",
         26: "macOS Tahoe",
+        27: "macOS Golden Gate",
     ]
 
     private static let legacyMinorNames: [Int: String] = [
