@@ -66,7 +66,8 @@ Sources/
 │   ├── SystemInfo.swift         Data model
 │   ├── DataGatherers/           System info collectors (Battery, Disk, GPU,
 │   │                            Hardware, Homebrew, Network, OS, Shell,
-│   │                            Terminal, Uptime, User)
+│   │                            Terminal, Uptime, User) plus the embedded
+│   │                            Mac model table (MacModelsData)
 │   ├── Display/                 ANSITheme, AppleLogo, BannerRenderer
 │   └── Utilities/               SysctlHelpers, SubprocessRunner
 ├── startup-banner-cli/          startup-banner executable target
@@ -74,6 +75,12 @@ Sources/
 └── ../Tests/startup-bannerTests/
     └── StartupBannerTests.swift
 ```
+
+## Acknowledgments
+
+Mac model identification uses the model-name dataset from
+[TelemetryDeck/AppleModelNames](https://github.com/TelemetryDeck/AppleModelNames),
+embedded directly in source (`MacModelsData.swift`).
 
 ## License
 

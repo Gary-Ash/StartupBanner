@@ -51,6 +51,15 @@ import Testing
     #expect(UptimeInfo.format(minutes: 1500) == "1 day, 1 hour 0 minutes")
 }
 
+@Test func marketingModelKnownID() {
+    #expect(HardwareInfo.lookupMarketingModel("Mac14,6") == "MacBook Pro (16-inch, 2023)")
+    #expect(HardwareInfo.lookupMarketingModel("Mac13,2") == "Mac Studio (2022)")
+}
+
+@Test func marketingModelUnknownID() {
+    #expect(HardwareInfo.lookupMarketingModel("NoSuchModel99,9") == nil)
+}
+
 @Test func osInfoReturnsResult() {
     let info = OSInfo.gather()
     if case let .os(text) = info {
